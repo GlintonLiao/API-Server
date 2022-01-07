@@ -51,7 +51,7 @@ app.use('/api', userRouter)
 // 导入并使用用户信息路由模块
 const userinfoRouter = require('./router/userinfo')
 // 以 ‘my’ 开头的接口，都是有权限的接口，需要进行 token 验证
-app.use('my', userinfoRouter)
+app.use('/my', userinfoRouter)
 
 // 指定端口号并开启服务器
 app.listen(3007, function() {
