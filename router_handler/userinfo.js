@@ -1,5 +1,4 @@
 // 导入数据库操作模块
-const { result } = require('@hapi/joi/lib/base')
 const db = require('../db/index')
 
 // 导出用户信息处理的函数
