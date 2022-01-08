@@ -35,3 +35,18 @@ exports.update_userinfo_schema = {
     email, 
   }, 
 }
+
+// 验证密码修改的合法性
+// 1. 新密码和旧密码不能一致
+// 2. 新密码要符合密码的规则
+exports.update_password_schema = {
+  body: {
+    // 使用 password 这个规则，验证 req.body.oldPwd 的值
+    oldPwd: password, 
+    // 解读
+    // 1. joi.ref('oldPwd') 表示 newPwd 的值必须和 oldPwd 的值保持一致
+    // 2. joi.not(joi.ref('oldPwd')) 表示 newPwd 的值不能等于 oldPwd 的值
+    // 3. .concat() 用于合并 joi.not(joi.ref('oldPwd)) 和 password 的这两条验证规则
+    newPwd: joi.not(joi.ref('oldPwd')).concat(password), 
+  }
+}
