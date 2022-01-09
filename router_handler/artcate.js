@@ -45,4 +45,18 @@ exports.addArticleCates = (req, res) => {
       res.cc('删除文章分类成功')
     })
   }
+
+  // 根据 id 获取文章分类的处理函数
+  exports.getArtCateById = (req, res) => {
+    const sql = `SELECT * FROM ev_article_cate WHERE id=?`
+    db.query(sql, req.params.id, (err, results) => {
+      if (err) return res.cc(err)
+      if (results.length !== 1) return rex.cc('获取文章分类失败')
+      res.send({
+        status: 0, 
+        message: '获取文章分类数据成功', 
+        data: results[0], 
+      })
+    })
+  }
 }

@@ -20,3 +20,10 @@ exports.delete_cate_schema = {
     id, 
   }, 
 }
+
+// 校验规则对象 - 根据 Id 获取分类
+exports.get_cate_schema = {
+  params: {
+    id, 
+  }, 
+}
