@@ -43,7 +43,7 @@ exports.updatePassword = (req, res) => {
   const sql = `SELECT * FROM ev_users WHERE id=?`
   db.query(sql, req.user.id, (err, results) => {
     if (err) return res.cc(err)
-    // 检查制定的 id 的用户是否存在
+    // 检查指定的 id 的用户是否存在
     if (results.length !== 1) return res.cc('用户不存在')
   })
 
