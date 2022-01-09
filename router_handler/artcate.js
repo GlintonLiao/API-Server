@@ -29,10 +29,20 @@ exports.addArticleCates = (req, res) => {
     if (results.length === 1 && results[0].alias === req.body.alias) return res.cc('文章别名被占用')
 
     const sql = `INSERT INTO ev_article_cate SET ?`
-    db.query(sql, req.body, (err, reuslts) => {
+    db.query(sql, req.body, (err, results) => {
       if (err) return res.cc(err)
       if (results.affectedRows !== 1) return res.cc('新增文章失败')
       rex.cc('新增文章分类成功', 0)
     })
   })
+
+  // 删除文章分类的路由处理函数
+  exports.deleteCateById = (req, res) => {
+    const sql = `UPDATE ev_article_cate SET is_deleted=1 WHERE id=?`
+    db.query(sql, req.params.id, (err, results) => {
+      if (err) return res.cc(err)
+      if (results.affectedRows !== 1) return res.cc('删除文章分类失败')
+      res.cc('删除文章分类成功')
+    })
+  }
 }
