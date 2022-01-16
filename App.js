@@ -62,6 +62,8 @@ app.use('/my/article', artCateRouter)
 const articleRouter = require('./router/article')
 // 为文章的路由挂载统一的访问前缀
 app.use('/my/article', artCateRouter)
+// 托管静态资源文件
+app.use('/uploads', express.static('./uploads'))
 
 // 指定端口号并开启服务器
 app.listen(3007, function() {
